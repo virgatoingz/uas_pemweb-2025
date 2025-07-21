@@ -1,0 +1,404 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "description": "This is the API documentation for My API.",
+        "termsOfService": "https://uas_pemweb.test/terms",
+        "contact": {
+            "name": "API Support",
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://uas_pemweb.test",
+            "description": "Local API Server"
+        }
+    ],
+    "paths": {
+        "/api/proyeks": {
+            "get": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Get all proyeks",
+                "operationId": "65c8bacde834800674c45b5bc6c9e423",
+                "responses": {
+                    "200": {
+                        "description": "List of proyeks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Create new proyek",
+                "operationId": "d5961d0c58739da8f4c479c57be55edf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_proyek",
+                                    "tanggal_mulai",
+                                    "tanggal_selesai"
+                                ],
+                                "properties": {
+                                    "nama_proyek": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "tanggal_mulai": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tanggal_selesai": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Proyek created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/proyeks/{id}": {
+            "get": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Get proyek by ID",
+                "operationId": "51dcf8127abf1a50af095e0fc7e8efa8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Proyek found"
+                    },
+                    "404": {
+                        "description": "Proyek not found"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Update proyek",
+                "operationId": "8c99615c4f2e411e4b6805d17fa5c7c9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_proyek": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "tanggal_mulai": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tanggal_selesai": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Proyek updated"
+                    },
+                    "404": {
+                        "description": "Proyek not found"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Delete proyek",
+                "operationId": "4fbe01065adb7d0da7642e16df23918b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deleted"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/proyeks/decrypt": {
+            "post": {
+                "tags": [
+                    "Proyeks"
+                ],
+                "summary": "Decrypt encrypted response payload",
+                "operationId": "b688c0e5f796dcacc033a1ac32fd5217",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "payload"
+                                ],
+                                "properties": {
+                                    "payload": {
+                                        "type": "string",
+                                        "example": "encrypted_base64_string_here"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Decrypted content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Proyek": {
+                "title": "Skema Proyek",
+                "description": "Representasi entitas proyek dalam sistem",
+                "properties": {
+                    "id": {
+                        "description": "ID unik proyek",
+                        "type": "integer",
+                        "format": "int64",
+                        "readOnly": true
+                    },
+                    "nama_proyek": {
+                        "description": "Nama proyek",
+                        "type": "string",
+                        "example": "Sistem Informasi Karyawan"
+                    },
+                    "klien": {
+                        "description": "Nama klien",
+                        "type": "string",
+                        "example": "PT Sukses Makmur",
+                        "nullable": true
+                    },
+                    "tanggal_mulai": {
+                        "description": "Tanggal mulai",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-08-01",
+                        "nullable": true
+                    },
+                    "deadline": {
+                        "description": "Tanggal deadline",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-12-15",
+                        "nullable": true
+                    },
+                    "anggaran": {
+                        "description": "Anggaran proyek",
+                        "type": "number",
+                        "format": "float",
+                        "example": 125000000,
+                        "nullable": true
+                    },
+                    "status": {
+                        "description": "Status proyek",
+                        "type": "string",
+                        "example": "berjalan"
+                    },
+                    "created_at": {
+                        "description": "Waktu pembuatan",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "description": "Waktu update",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "type": "object"
+            },
+            "Tugas": {
+                "title": "Skema Tugas",
+                "description": "Representasi entitas tugas dalam proyek",
+                "required": [
+                    "nama_tugas",
+                    "proyek_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "proyek_id": {
+                        "description": "ID proyek terkait",
+                        "type": "integer"
+                    },
+                    "nama_tugas": {
+                        "type": "string",
+                        "example": "Membuat backend"
+                    },
+                    "deskripsi": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "penanggung_jawab": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "belum_mulai"
+                    },
+                    "tanggal_mulai": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "deadline": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Proyeks"
+        }
+    ]
+}
